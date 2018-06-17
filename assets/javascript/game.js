@@ -23,7 +23,7 @@ $(document).ready(function () {
             photo: "assets/images/asas2.png"
         },
         {
-            question: "What does Mario jump on after completing a level??",
+            question: "What does Mario jump on after completing a level?",
             choice: ["A Big Mushroom", "A Coin Box", "A Piranha Plant", "A Flag Pole"],
             answer: 3,
             photo: "assets/images/mfp.jpg"
@@ -38,16 +38,16 @@ $(document).ready(function () {
             question: "What is the name of the giant robot-like creature in Bioshock 1 & 2?",
             choice: ["Heavenly Father", "Big Daddy", "Bubble Jug", "Big Boi"],
             answer: 1,
-            photo: "assets/images/bd.jpg"
+            photo: "assets/images/bd2.png"
         },
         {
             question: "What color are Spyro The Dragons' wings?",
             choice: ["Blue", "Purple", "Orange", "Green"],
             answer: 2,
-            photo: "assets/images/sd2.jpg"
+            photo: "assets/images/sd3.jpg"
         },
         {
-            question: "What is Laura Croft's field of study in the Tomb Raider Series",
+            question: "What is Laura Croft's field of study in the Tomb Raider Series?",
             choice: ["Agriculture", "Anthropology", "Architecture", "Archaeology"],
             answer: 3,
             photo: "assets/images/lctr2.jpg"
@@ -70,11 +70,10 @@ $(document).ready(function () {
     correctNum = 0;
     incorrectNum = 0;
     unansweredNum = 0;
-    countdown = 30;
+    countdown = 20;
     var intervalId;
     var gameRunning = false;
     var timerRunning = false;
-    var userChoice;
     //hide quiz until click play\\
     quizArea, results.hide();
 
@@ -120,6 +119,7 @@ $(document).ready(function () {
                 imageReplace.attr("src", answerM.photo);
                 imageReplace.addClass("col-12 col-lg-6");
                 $("#answerArea").append(imageReplace);
+                reLoad();
 
             } else if (userSelect != answerM.answer) {
                 counter++;
@@ -131,18 +131,27 @@ $(document).ready(function () {
                 imageReplace.attr("src", answerM.photo);
                 imageReplace.addClass("col-12 col-lg-6");
                 $("#answerArea").append(imageReplace);
-            } //else if (countdown === 0) {
-            //     counter++;
-            //     unansweredNum++;
-            //     stop()
-            //     var tooLate = $("<h3>Times Up! The correct answer was " + answerM.choice[answerM.answer] + "</h3>");
-            //     $("#answerArea").html(tooLate);
-            //     var imageReplace = $("<img>");
-            //     imageReplace.attr("src", answerM.photo);
-            //     imageReplace.addClass("col-12 col-lg-6");
-            //     $("#answerArea").append(imageReplace);
-            // }
+                reLoad();
+            }
         })
+    }
+
+
+    function reLoad() {
+        countdown = 21;
+        if (counter == questionArr.length) {
+            quizArea.hide();
+            results.show();
+            $("#correct").text(correctNum);
+            $("#incorrect").text(incorrectNum);
+            $("#unanswered").text(unansweredNum);
+        } else {
+            setTimeout(function () {
+                $("#questionArea").empty();
+                $("#answerArea").empty();
+                loadQnA();
+            }, 3000);
+        }
     }
 
 
@@ -158,7 +167,7 @@ $(document).ready(function () {
     function decrement() {
         //  Decrease number by one.
         countdown--;
-        //  Show the number in the #show-number tag.
+        //  Show the number in the #countdown tag.
         $("#countdown").html(countdown);
         //  Once number hits zero...
         if (countdown === 0) {
@@ -173,6 +182,7 @@ $(document).ready(function () {
             imageReplace.attr("src", answerM.photo);
             imageReplace.addClass("col-12 col-lg-6");
             $("#answerArea").append(imageReplace);
+            reload();
         }
     }
     //  The stop function
@@ -184,7 +194,5 @@ $(document).ready(function () {
         clearInterval(intervalId);
         timerRunning = false;
     }
-
-    // timer();
 
 })
