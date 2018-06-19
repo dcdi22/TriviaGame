@@ -94,11 +94,11 @@ $(document).ready(function () {
         questionM = questionArr[counter].question
         answerM = questionArr[counter];
         // console.log(answerM);
-        $("#questionArea").html("<h2>" + questionM + "</h2>");
+        $("#questionArea").html("<h4>" + questionM + "</h4>");
         for (var i = 0; i < answerM.choice.length; i++) {
 
             var answerOption = $("<div>"); //$("<button>")
-            answerOption.addClass("answerChoice btn"); //btn btn-primary
+            answerOption.addClass("answerChoice"); //btn btn-primary
             answerOption.text(answerM.choice[i]);
             answerOption.attr("data-index", i);
             $("#answerArea").append(answerOption);
@@ -117,7 +117,7 @@ $(document).ready(function () {
                 $("#answerArea").html(hurray);
                 var imageReplace = $("<img>");
                 imageReplace.attr("src", answerM.photo);
-                imageReplace.addClass("col-12 col-lg-6");
+                imageReplace.addClass("col-12 col-lg-10");
                 $("#answerArea").append(imageReplace);
                 reLoad();
 
@@ -129,7 +129,7 @@ $(document).ready(function () {
                 $("#answerArea").html(boo);
                 var imageReplace = $("<img>");
                 imageReplace.attr("src", answerM.photo);
-                imageReplace.addClass("col-12 col-lg-6");
+                imageReplace.addClass("col-12 col-lg-10");
                 $("#answerArea").append(imageReplace);
                 reLoad();
             }
@@ -154,6 +154,21 @@ $(document).ready(function () {
         }
     }
 
+    $("#reset").on("click", function () {
+        counter = 0;
+        correctNum = 0;
+        incorrectNum = 0;
+        unansweredNum = 0;
+        countdown = 20;
+        results.hide();
+        quizArea.show();
+        $("#questionArea").empty();
+        $("#answerArea").empty();
+        loadQnA();
+        // reLoad();
+
+
+    })
 
 
     // timer Function
@@ -180,9 +195,9 @@ $(document).ready(function () {
             $("#answerArea").html(tooLate);
             var imageReplace = $("<img>");
             imageReplace.attr("src", answerM.photo);
-            imageReplace.addClass("col-12 col-lg-6");
+            imageReplace.addClass("col-12 col-lg-10");
             $("#answerArea").append(imageReplace);
-            reload();
+            reLoad();
         }
     }
     //  The stop function
