@@ -47,7 +47,7 @@ $(document).ready(function () {
             photo: "assets/images/sd3.jpg"
         },
         {
-            question: "What is Laura Croft's field of study in the Tomb Raider Series?",
+            question: "What is Lara Croft's field of study in the Tomb Raider Series?",
             choice: ["Agriculture", "Anthropology", "Architecture", "Archaeology"],
             answer: 3,
             photo: "assets/images/lctr2.jpg"
